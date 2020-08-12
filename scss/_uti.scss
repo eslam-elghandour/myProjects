@@ -1,0 +1,35 @@
+// Buttons
+.btn {
+	border: none;
+	color: $White;
+	border-radius: 100px;
+	padding: 0.9rem 3rem;
+	background: linear-gradient(90deg, $Lime-Green, $Bright-Cyan);
+	font-size: 1rem;
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+// Text
+.h1 {
+	margin-bottom: 1rem;
+	font-weight: 500;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.lead {
+	line-height: 1.6;
+	margin-bottom: 1rem;
+	color: $Grayish-Blue;
+}
+
+.section {
+	padding: 6rem 0;
+}

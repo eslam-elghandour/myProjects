@@ -1,0 +1,469 @@
+@import "config";
+@import "uti";
+@import "mobile";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Public Sans', sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: $Dark-Blue;
+}
+
+ul {
+	list-style: none;
+}
+
+img {
+	width: 100%;
+}
+
+//Side Nav
+.side-nav {
+	height: 100vh;
+	width: 250px;
+	position: fixed;
+	top: 0;
+	right: -250px;
+	background: red;
+	z-index: 1000;
+	background: $Dark-Blue;
+}
+
+// Nav
+.main-nav {
+	background: $White;
+	padding: 1rem;
+	position: relative;
+	z-index: 3;
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+
+		@include md {
+			display: block;
+			overflow: hidden;
+		}
+	}
+	.branding {
+		font-weight: bold;
+		font-size: 1.5rem;
+		color: $Dark-Blue;
+		float: left;
+	}
+
+	.nav-list {
+		display: flex;
+
+		.hide {
+			display: block;
+
+			@include md {
+				display: none;
+			}
+			@include mobile {
+				display: none;
+			}
+		}
+
+		a {
+			color: $Grayish-Blue;
+			margin: 0 1rem;
+			padding-bottom: 26px;
+
+			&:hover {
+				color: $Dark-Blue;
+				border-bottom: 4px solid $Lime-Green;
+			}
+		}
+
+		&.side-nav {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			@include easeOut;
+
+			&.open {
+				right: 0;
+			}
+		}
+	}
+
+	.side-nav .delay {
+		padding: 2rem;
+		transform: translate3d(170px, 0, 0);
+		@include easeOut;
+
+		&.open {
+			transform: translate3d(0, 0, 0);
+		}
+		a {
+			font-size: 1.5rem;
+
+			&:hover {
+				color: $Lime-Green;
+				border: none;
+			}
+		}
+	}
+
+	@for $x from 1 through 5 {
+		.delay:nth-child(#{$x}) {
+			transition-delay: $x * 0.1s;
+		}
+	}
+
+	.btn {
+		@include md {
+			display: none;
+		}
+	}
+
+	.menu {
+		cursor: pointer;
+		float: right;
+		text-align: center;
+		position: relative;
+		display: none;
+		top: 5px;
+		z-index: 3000;
+
+		@include easeOut;
+
+		.btn-line {
+			width: 30px;
+			display: block;
+			height: 2px;
+			background: $Lime-Green;
+			margin-bottom: 5px;
+
+			@include easeOut;
+		}
+
+		&.open {
+			transform: rotate(180deg);
+
+			.btn-line:nth-child(1) {
+				transform: translate3d(10px, 13px, 0) rotate(50deg);
+			}
+			.btn-line:nth-child(2) {
+				opacity: 0;
+			}
+			.btn-line:nth-child(3) {
+				transform: translate3d(10px, 0px, 0) rotate(130deg);
+			}
+		}
+
+		@include mobile {
+			display: block;
+		}
+		@include md {
+			display: block;
+		}
+	}
+}
+
+//Header
+header {
+	background: $Very-Light-Gray;
+	overflow: hidden;
+
+	.container {
+		display: flex;
+
+		height: calc(100vh - (32px + 46.781px));
+		position: relative;
+		@include md {
+			flex-direction: column;
+			text-align: center;
+			height: calc(100vh - (64px + 46.781px));
+		}
+		@include mobile {
+			height: calc(100vh - 60px);
+		}
+	}
+
+	.hero {
+		justify-self: center;
+		float: left;
+		align-self: center;
+		margin: auto;
+
+		@include md {
+			order: 2;
+			float: none;
+			justify-self: start;
+			align-self: start;
+			position: relative;
+			top: -100px;
+		}
+	}
+
+	h1 {
+		font-size: 4rem;
+		color: $Dark-Blue;
+		@include mobile {
+			font-size: 3rem;
+		}
+	}
+
+	p {
+		width: 80%;
+
+		@include md {
+			text-align: center;
+			width: 90%;
+			margin: auto;
+		}
+
+		@include mobile {
+			text-align: center;
+			width: 90%;
+			margin: auto;
+		}
+	}
+
+	img {
+		margin-right: -150px;
+
+		@include md {
+			position: relative;
+			top: -150px;
+			height: 500px;
+			width: 500px;
+			margin: auto;
+		}
+
+		@include mobile {
+			position: relative;
+			top: -150px;
+			height: 500px;
+			width: 500px;
+			margin: auto;
+		}
+	}
+}
+
+// Section 2
+.skills {
+	background: $Light-Grayish-Blue;
+
+	.intro {
+		width: 50%;
+
+		@include md {
+			width: 100%;
+		}
+	}
+
+	h2 {
+		font-size: 2.4rem;
+		color: $Dark-Blue;
+		font-weight: 400;
+	}
+
+	.feat {
+		display: flex;
+		margin-top: 4rem;
+		@include md {
+			flex-direction: column;
+		}
+
+		p {
+			@include md {
+				width: 70%;
+				margin: auto;
+			}
+			@include mobile {
+				width: 100%;
+				margin: auto;
+			}
+		}
+
+		i {
+			width: 80px;
+			height: 80px;
+			text-align: center;
+			border-radius: 50%;
+			background: linear-gradient(90deg, $Lime-Green, $Bright-Cyan);
+			line-height: 80px;
+			color: $White;
+			margin-bottom: 1rem;
+
+			@include mobile {
+				margin-bottom: 0;
+			}
+		}
+
+		h3 {
+			color: $Dark-Blue;
+			font-size: 1.5rem;
+			margin: 1.5rem 0;
+		}
+
+		.box {
+			margin: auto;
+			margin-right: 2rem;
+
+			@include md {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+
+	@include md {
+		text-align: center;
+	}
+}
+
+// Articles
+.activity {
+	.h1 {
+		font-size: 2.4rem;
+		color: $Dark-Blue;
+	}
+
+	img {
+		width: 100%;
+		height: 200px;
+
+		@include md {
+			height: 300px;
+		}
+	}
+
+	.works {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		gap: 20px;
+		margin-top: 3rem;
+
+		@include md {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include mobile {
+			grid-template-columns: 1fr;
+		}
+
+		small {
+			margin: 1rem 0;
+			display: block;
+			color: $Grayish-Blue;
+		}
+		.h1 {
+			font-size: 1.4rem;
+			color: $Dark-Blue;
+			cursor: pointer;
+
+			&:hover {
+				color: $Bright-Cyan;
+			}
+		}
+	}
+}
+
+footer {
+	padding: 2rem 0;
+	background: $Dark-Blue;
+
+	.container {
+		display: flex;
+
+		@include md {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	.left {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 50%;
+		@include md {
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+		}
+		.col-1 {
+			text-align: center;
+		}
+
+		.branding {
+			font-weight: bold;
+			font-size: 1.5rem;
+			color: $White;
+			align-content: flex-start;
+			@include md {
+				font-size: 2rem;
+			}
+		}
+
+		.social {
+			margin-top: 2.5rem;
+			@include md {
+				margin: 1.5rem 0;
+			}
+
+			img {
+				margin-right: 1rem;
+				cursor: pointer;
+				width: 20px;
+				height: 20px;
+				@include md {
+					width: 30px;
+					height: 30px;
+				}
+
+				&:hover {
+					color: $Bright-Cyan;
+				}
+			}
+			img:last-child {
+				margin-right: 0rem;
+			}
+		}
+
+		ul:last-child {
+			@include md {
+				margin-bottom: 1.5rem;
+			}
+		}
+
+		ul li {
+			color: darken($White, 10%);
+			padding: 0.4rem 0;
+
+			@include md {
+				font-size: 1.2rem;
+			}
+		}
+	}
+
+	.right {
+		width: 50%;
+		text-align: right;
+		@include md {
+			text-align: center;
+		}
+
+		.btn {
+			margin-top: 0.4rem;
+		}
+
+		p {
+			margin-top: 2rem;
+		}
+	}
+}
